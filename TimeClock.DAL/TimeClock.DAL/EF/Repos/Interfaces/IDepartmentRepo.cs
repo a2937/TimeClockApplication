@@ -10,6 +10,6 @@ namespace TimeClock.DAL.EF.Repos.Interfaces
     {
         IEnumerable<Department> GetEmployeesInDepartment(int departmentID);
 
-
+        
     }
 }

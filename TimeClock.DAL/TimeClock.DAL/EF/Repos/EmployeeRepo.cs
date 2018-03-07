@@ -23,7 +23,6 @@ namespace TimeClock.DAL.EF.Repos
         public override IEnumerable<Employee> GetRange(int skip, int take)
             => GetRange(Table.OrderBy(x => x.LastName), skip, take);
 
-        
-
+        public IEnumerable<Employee> GetAllOverTimeEmployees() => Table.Where(x => x.ExemptFromOvertime == false);
     }
 }
