@@ -13,6 +13,7 @@ namespace TimeClock.DAL.Models.Entities
         [DataType(DataType.Date), Display(Name = "Hourly Wage")]
         public DateTime WeekOf { get; set; }
 
-
+        [InverseProperty(nameof(Day.Week))]
+        public List<Day> Days { get; set; } = new List<Day>();
     }
 }

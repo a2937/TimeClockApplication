@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using TimeClock.DAL.Models.Entities;
+using TimeClock.DAL.Models.Entities.Joins;
 
 namespace TimeClock.DAL.EF
 {
@@ -48,15 +49,26 @@ namespace TimeClock.DAL.EF
             {
                 entity.HasIndex(e => e.EmailAddress).HasName("IX_Employees").IsUnique();
             });
+            modelBuilder.Entity<WorkSchedule>(entity =>
+            {
+                entity.Property(e => e.HoursWorked)
+                    .HasDefaultValueSql("DATEDIFF ( Hours , SignIn , SignOut )");
+            });
+            modelBuilder.Entity<Day>(entity =>
+            {
+                entity.Property(e => e.Date)
+                 .HasDefaultValueSql("getdate()");
+            });
+                
 
         }
 
         public virtual DbSet<Week> Weeks { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
- 
+        public virtual DbSet<WorkSchedule> WorkSchedules { get; set; }
 
- 
+
         //Joins
     }
 }

@@ -16,8 +16,9 @@ namespace TimeClock.DAL.Models.Entities
         public int EmployeeId { get; set; }
 
         [ForeignKey(nameof(EmployeeId))]
-        public Manager Manager { get; set; }
+        public Employee Manager { get; set; }
 
-        public HashSet<Employee> AssignedEmployees { get; set; }
+        [InverseProperty(nameof(Employee.Department))]
+        public List<Employee> AssignedEmployees { get; set; }
     }
 }

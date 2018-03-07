@@ -10,6 +10,11 @@
     <PackageTags> DAL</PackageTags>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="EF\Repo\**" />
+    <EmbeddedResource Remove="EF\Repo\**" />
+    <None Remove="EF\Repo\**" />
+  </ItemGroup>
+  <ItemGroup>
     
     <PackageReference Include="log4net" Version="2.0.7" />
     
@@ -28,6 +33,6 @@
     <ProjectReference Include="..\TimeClock.DAL.Models\TimeClock.DAL.Models.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="EF\Repos\Interfaces\" />
+    <Folder Include="Initializers\" />
   </ItemGroup>
 </Project>

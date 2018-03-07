@@ -6,6 +6,7 @@ using TimeClock.DAL.Models.Entities.Base;
 
 namespace TimeClock.DAL.Models.Entities.Joins
 {
+    [Table("WorkSchedules", Schema = "User")]
     public class WorkSchedule : EntityBase
     {
 
