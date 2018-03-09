@@ -48,12 +48,15 @@ namespace TimeClock.DAL.EF
             modelBuilder.Entity<Employee>(entity =>
             {
                 entity.HasIndex(e => e.EmailAddress).HasName("IX_Employees").IsUnique();
+                entity.Property(e => e.Password)
+                    .HasDefaultValue("Changeme123");
             });
             modelBuilder.Entity<WorkSchedule>(entity =>
             {
                 entity.Property(e => e.HoursWorked)
                     .HasDefaultValueSql("DATEDIFF ( Hours , SignIn , SignOut )");
             });
+           
             modelBuilder.Entity<Day>(entity =>
             {
                 entity.Property(e => e.Date)

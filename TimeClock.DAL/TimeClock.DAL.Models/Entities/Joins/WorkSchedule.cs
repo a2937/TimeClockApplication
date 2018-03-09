@@ -25,5 +25,11 @@ namespace TimeClock.DAL.Models.Entities.Joins
         public DateTime SignOut { get; set; }
 
         public int HoursWorked { get; set; } // Should be Calculated from sign in and sign out
+		
+		public bool Approved{get;set;}
+		
+		[DataType(DataType.Text), MaxLength(50)]
+		public string Reason{get;set;}
+		
     }
 }

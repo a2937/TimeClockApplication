@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -25,7 +25,7 @@ namespace TimeClock.DAL.Models.Entities
         [Display(Name = "Hours Worked")]
         public decimal HoursWorked { get; set; }
 
-        [Required]
+      
         [EmailAddress]
         [DataType(DataType.EmailAddress), MaxLength(50), Display(Name = "Email Address")]
         public string EmailAddress { get; set; }
