@@ -7,7 +7,7 @@ using TimeClock.DAL.Models.Entities.Base;
 
 namespace TimeClock.DAL.Models.Entities
 {
-    [Table("Employees", Schema = "User")]
+    [Table("Employees", Schema = "TimeSheet")]
     public class Employee : EntityBase
     {
         [DataType(DataType.Text), MaxLength(50), Display(Name = "First Name")]
@@ -22,10 +22,6 @@ namespace TimeClock.DAL.Models.Entities
         [DataType(DataType.Currency), Display(Name = "Hourly Wage")]
         public decimal HourlyWage { get; set; }
 
-        [Display(Name = "Hours Worked")]
-        public decimal HoursWorked { get; set; }
-
-      
         [EmailAddress]
         [DataType(DataType.EmailAddress), MaxLength(50), Display(Name = "Email Address")]
         public string EmailAddress { get; set; }

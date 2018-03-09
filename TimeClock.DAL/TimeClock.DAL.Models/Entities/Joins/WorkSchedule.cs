@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 using TimeClock.DAL.Models.Entities.Base;
 
 namespace TimeClock.DAL.Models.Entities.Joins
 {
-    [Table("WorkSchedules", Schema = "User")]
+    [Table("WorkSchedules", Schema = "TimeSheet")]
     public class WorkSchedule : EntityBase
     {
 
@@ -20,13 +21,14 @@ namespace TimeClock.DAL.Models.Entities.Joins
         [ForeignKey(nameof(EmployeeId))]
         public Employee Employee { get; set; }
 
-        public DateTime SignIn { get; set; }
+        [Display(Name = "Hours Worked")]
+        public decimal HoursWorked { get; set; }
 
-        public DateTime SignOut { get; set; }
+        [DataType(DataType.Currency), Display(Name = "Amount of money earned.")]
+        public decimal MoneyEarned { get; set; }
 
-        public int HoursWorked { get; set; } // Should be Calculated from sign in and sign out
-		
-		public bool Approved{get;set;}
+
+        public bool Approved{get;set;}
 		
 		[DataType(DataType.Text), MaxLength(50)]
 		public string Reason{get;set;}

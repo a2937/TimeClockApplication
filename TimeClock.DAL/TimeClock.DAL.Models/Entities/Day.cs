@@ -6,7 +6,7 @@ using TimeClock.DAL.Models.Entities.Base;
 
 namespace TimeClock.DAL.Models.Entities
 {
-    [Table("Days", Schema = "User")]
+    [Table("Days", Schema = "TimeSheet")]
     public class Day : EntityBase
     {
         public DateTime Date { get; set; }

@@ -7,7 +7,7 @@ using TimeClock.DAL.Models.Entities.Base;
 
 namespace TimeClock.DAL.Models.Entities
 {
-    [Table("Groups", Schema = "User")]
+    [Table("Departments", Schema = "TimeSheet")]
     public class Department : EntityBase
     {
         [DataType(DataType.Text), MaxLength(50)]
@@ -20,5 +20,7 @@ namespace TimeClock.DAL.Models.Entities
 
         [InverseProperty(nameof(Employee.Department))]
         public List<Employee> AssignedEmployees { get; set; }
+
+        
     }
 }
