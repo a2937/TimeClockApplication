@@ -1,0 +1,107 @@
+﻿@model DepartmentAndUserViewModel
+@{
+    <div class="bg-primary m-1 p-1" ><h4>Edit Department</h4></div>
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+
+    <form asp-action="Edit" method="post">
+        <input type="hidden" name="DepartmentName" value="@Model.Department.Name" />
+        <input type="hidden" name="DepartmentId" value="@Model.DepartmentId" />
+  
+        @if (Model.Supervisor == null)
+        {
+        <p> Select a new department supervisor</p>
+
+        <select name="NewSuperVisorEmployeeId" class="form-control">
+            @foreach (ApplicationUser user in Model.Members)
+            {
+            <option value=@user.Id> @user.FirstName @user.LastName </option>
+
+            }
+        </select>
+        }
+
+        @if(Model.Supervisor != null)
+        {
+        <p> Change the department supervisor</p>
+
+        <select name="NewSuperVisorEmployeeId" class="form-control">
+            @foreach (ApplicationUser user in Model.Members)
+            {
+                if(user.Id == Model.Supervisor.EmployeeId)
+                {
+
+                    <option value=@user.Id  selected> @user.FirstName @user.LastName </option>
+                }
+                else
+                {
+                      <option value=@user.Id> @user.FirstName @user.LastName </option>
+
+                }
+             
+
+             }
+        }
+        </select>
+
+        }
+
+
+        <h6 class="bg-info p-1 text-white">Add to @Model.Department.Name</h6>
+
+
+
+
+
+        <table class="table table-bordered table-sm">
+            @if (Model.NonMembers.Count() == 0)
+            {
+            <tr>
+                <td colspan="3">All Users are members</td>
+            </tr>
+             }
+    else
+    {
+        @foreach (ApplicationUser user in Model.NonMembers)
+            {
+        <tr>
+            <td>@user.UserName</td>
+            <td>@user.FirstName @user.LastName</td>
+            <td>
+                <input type="checkbox" name="IdsToAdd" value="@user.Id" />
+            </td>
+        </tr>
+
+        }
+    }
+        </table>
+
+        <h6 class="bg-info p-1 text-white">Remove from @Model.Department.Name</h6>
+        <table class="table table-bordered table-sm">
+            @if (Model.Members.Count() == 0)
+            {
+             <tr><td colspan="3">No Users Are Members</td></tr>
+            }
+    else
+    {
+        @foreach (ApplicationUser user in Model.Members)
+        {
+             <tr>
+                 <td>@user.UserName</td>
+                 <td>@user.FirstName @user.LastName</td>
+                 <td>
+                     <input type="checkbox" name="IdsToDelete" value="@user.Id" />
+                 </td>
+             </tr>
+
+        }
+
+    }
+        </table>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+}
+
+

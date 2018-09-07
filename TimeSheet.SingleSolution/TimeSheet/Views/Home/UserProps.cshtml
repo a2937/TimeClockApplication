@@ -1,0 +1,15 @@
+﻿@model ApplicationUser
+@{
+    <div class="bg-primary m-1 p-1 text-white"><h4>@Model.UserName</h4></div>
+
+    <div class="text-danger" asp-validation-summary="All"></div>
+
+    <form asp-action="UserProps" method="post">
+        <div class="form-group">
+            <label asp-for="HourlyWage"></label>
+            <input disabled="disabled" asp-for="HourlyWage" class="form-control" type="number" min="1" step="any" />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a asp-action="Index" class="btn btn-primary">Cancel</a>
+    </form>
+}

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<CheckViewModel>
+@{
+    ViewData["Title"] = "Check";
+}
+<div class="panel-heading">@ViewData["Title"]</div>
+@foreach (CheckViewModel check in Model)
+{
+    if (check.EmployeeFirstName != "" && check.EmployeeFirstName != null)
+    {
+
+        <div class="panel panel-default">
+            <div>
+                <p>@check.Date.ToShortDateString()</p>
+            </div>
+
+            <div>
+                <p>Example Inc</p>
+                <p>Example City</p>
+                <p>Example State</p>
+                <p>Example Zip</p>
+            </div>
+
+            <div>
+                <p>@check.EmployeeFirstName @check.EmployeeLastName</p>
+            </div>
+
+            <div>
+                <p>@check.Payment</p>
+                <p>@check.PaymentInMoney dollars</p>
+            </div>
+        </div>
+    }
+
+}
+
+

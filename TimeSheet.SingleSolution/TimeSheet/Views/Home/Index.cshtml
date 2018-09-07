@@ -1,0 +1,44 @@
+﻿@model Dictionary<string, object>
+@{
+    <div class="bg-primary m-1 p-1 text-white"><h4>User Details</h4></div>
+
+
+    @if (User?.Identity?.IsAuthenticated ?? false)
+    {
+        <a asp-controller="Account" asp-action="Logout" class="btn btn-danger">Logout</a>
+        <a asp-controller="SignIn" asp-action="Index" class="btn btn-primary">View schedule</a>
+    }
+
+    @if (User?.IsInRole("Admins") ?? true)
+    {
+        <a asp-controller="RoleAdmin" asp-action="Index" class="btn btn-primary">View roles</a>
+        <a asp-controller="Admin" asp-action="Index" class="btn btn-primary">View users</a>
+        <a asp-controller="Department" asp-action="Index" class="btn btn-primary">View departments</a>
+    }
+
+    @if ((User?.IsInRole("Managers") ?? true) && (User?.IsInRole("PayrollSupervisors") ?? false))
+    {
+        if (User?.IsInRole("PayrollSupervisors") ?? false)
+        {
+            <a asp-controller="TimeSheet" asp-action="Index" class="btn btn-primary">Review schedule requests</a>
+        }
+    }
+
+    else if ((User?.IsInRole("PayrollSupervisors") ?? true) && (User?.IsInRole("Managers") ?? false))
+    {
+        if (User?.IsInRole("Managers") ?? false)
+        {
+            <a asp-controller="TimeSheet" asp-action="Index" class="btn btn-primary">Review schedule requests</a>
+        }
+
+    }
+
+
+    else if ((User?.IsInRole("PayrollSupervisors") ?? true) && (User?.IsInRole("Managers") ?? true))
+    {
+           
+        <a asp-controller="TimeSheet" asp-action="Index" class="btn btn-primary">Review schedule requests</a>
+
+    }
+
+}

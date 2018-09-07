@@ -1,0 +1,35 @@
+﻿@model WorkDay
+@{
+    <div class="bg-primary m-1 p-1"><h4>Edit Your WorkDay</h4> </div>
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <form asp-action="Edit" method="post">
+        <input type="hidden" name="EmployeeId" value="@Model.EmployeeId" />
+        <input type="hidden" name="EstimatedPay" value="@Model.EstimatedPay" />
+        <input type="hidden" name="HoursWorked" value="@Model.HoursWorked" />
+
+        <div class="form-group">
+            <label for="Date">Date</label>
+            <input asp-for="Date" type="date" value=@Model.Date.ToString("yyyy-MM-dd") class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="IsVacationDay">Is this a vacation day?</label>
+            <input asp-for="IsVacationDay" id="IsVacationDay" type="checkbox" onclick="setCheckedBoxValue('IsVacationDay')" />
+        </div>
+        <div class="form-control">
+            <label for="SignIn">Sign in time</label>
+            <input asp-for="SignIn" type="time" value=@Model.SignIn?.ToString("HH:mm") class="form-control" />
+        </div>
+        <br />
+        <br />
+        <div class="form-control">
+            <label for="SignOut">Sign out time</label>
+            <input asp-for="SignOut" type="time" value=@Model.SignOut?.ToString("HH:mm") class="form-control" />
+        </div>
+        <br />
+        <br />
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+}
